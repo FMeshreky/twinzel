@@ -25,8 +25,6 @@ $pwd = $_POST['pwd'];
 $age = $agv;
 $gen = $_POST['gen'];
 
-DB::query('INSERT INTO users VALUES (\'\', :first, :last, :email, :pwd, :age, :gen)', array(':first'=>$first, ':last'=>$last, ':email'=>$email, ':pwd'=>$pwd, ':age'=>$age, ':gen'=>$gen));
-
 //Error handlers
 //Check for empty fields
 if (empty($first) || empty($last) || empty($email) || empty($pwd)) {
@@ -43,11 +41,15 @@ if (empty($first) || empty($last) || empty($email) || empty($pwd)) {
       header("Location: ../index.php?index=email");
       exit();
     } else {
-      $sql = "SELECT * FROM users WHERE user_email='$email'";
-      $result = mysqli_query($conn, $sql);
-      $resultCheck = mysqli_num_rows($result);
+      // Check if email is exist
+      // $sql = "SELECT * FROM users WHERE user_email='$email'";
+      // $result = mysqli_query($conn, $sql);
+      // $resultCheck = mysqli_num_rows($result);
+      //
+      // if ($resultCheck > 0) {
 
-      if ($resultCheck > 0) {
+        if (DB::query('SELECT user_email FROM users WHERE :email=user_email', array(':email'=>$email))) {
+
         header("Location: ../index.php?index=usertaken");
         exit();
       } else {
@@ -73,8 +75,9 @@ if (empty($first) || empty($last) || empty($email) || empty($pwd)) {
                 //Hashing the Password
                 $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
                 //Insert thee user into the database
-                $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd, user_age, user_gen) VALUES ('$first', '$last', '$email', '$hashedPwd', '$age', '$gen');";
-                mysqli_query($conn, $sql);
+                // $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd, user_age, user_gen) VALUES ('$first', '$last', '$email', '$hashedPwd', '$age', '$gen');";
+                // mysqli_query($conn, $sql);
+                DB::query('INSERT INTO users VALUES (\'\', :first, :last, :email, :pwd, :age, :gen)', array(':first'=>$first, ':last'=>$last, ':email'=>$email, ':pwd'=>password_hash($pwd, PASSWORD_BCRYPT), ':age'=>$age, ':gen'=>$gen));
                 header("Location: ../index.php?index=success");
                 exit();
               }
