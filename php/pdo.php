@@ -10,7 +10,7 @@ class DB {
 
   }
 
-  public static function query($query, $params) {
+  public static function query($query, $params = array()) {
 
     $statement = self::connect()->prepare($query);
     $statement->execute($params);
@@ -20,5 +20,3 @@ class DB {
   }
 
 }
-
-?>

@@ -1,21 +1,31 @@
 <?php
 
+// include_once 'config.php';
+include('pdo.php');
+
 if (isset($_POST['register'])) {
 
-include_once 'config.php';
-// include 'pdo.php';
-
+// Date to age function
 $dob = new DateTime($_POST['datetimepicker']);
 $now = new DateTime();
 $age = $dob->diff($now);
 $agv = $age->format('%Y');
 
-$first = mysqli_real_escape_string($conn, $_POST['first']);
-$last = mysqli_real_escape_string($conn, $_POST['last']);
-$email = mysqli_real_escape_string($conn, $_POST['email']);
-$pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
-$age = mysqli_real_escape_string($conn, $agv);
-$gen = mysqli_real_escape_string($conn, $_POST['gen']);
+// $first = mysqli_real_escape_string($conn, $_POST['first']);
+// $last = mysqli_real_escape_string($conn, $_POST['last']);
+// $email = mysqli_real_escape_string($conn, $_POST['email']);
+// $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
+// $age = mysqli_real_escape_string($conn, $agv);
+// $gen = mysqli_real_escape_string($conn, $_POST['gen']);
+
+$first = $_POST['first'];
+$last = $_POST['last'];
+$email = $_POST['email'];
+$pwd = $_POST['pwd'];
+$age = $agv;
+$gen = $_POST['gen'];
+
+DB::query('INSERT INTO users VALUES (\'\', :first, :last, :email, :pwd, :age, :gen)', array(':first'=>$first, ':last'=>$last, ':email'=>$email, ':pwd'=>$pwd, ':age'=>$age, ':gen'=>$gen));
 
 //Error handlers
 //Check for empty fields
