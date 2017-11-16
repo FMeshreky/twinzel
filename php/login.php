@@ -5,6 +5,7 @@ session_start();
 if (isset($_POST['submit'])) {
 
   include_once 'config.php';
+  // include 'pdo.php';
 
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
@@ -36,6 +37,12 @@ if (isset($_POST['submit'])) {
           $_SESSION['u_email'] = $row['user_email'];
           $_SESSION['u_age'] = $row['user_age'];
           $_SESSION['u_gen'] = $row['user_gen'];
+          //
+          // $cstrong = True;
+          // $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
+          // $user_id = DB::query('SELECT user_id FROM users WHERE user_email=:user_email', array(':user_email'=>$email))[0]['user_email'];
+          // DB::query('INSERT INTO login_tokens VALUES (\'\', :token, :user_id)', array(':token'=>sha1($token), ':user_id'=>$user_id));
+          //
           header("Location: ../home.php");
           exit();
         }

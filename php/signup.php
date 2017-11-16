@@ -3,21 +3,12 @@
 if (isset($_POST['register'])) {
 
 include_once 'config.php';
+// include 'pdo.php';
 
 $dob = new DateTime($_POST['datetimepicker']);
 $now = new DateTime();
 $age = $dob->diff($now);
 $agv = $age->format('%Y');
-
-/*$dob = $_GET['datetimepicker'];
-$dob = explode("/", $dob);
-$agv = (date("md", date("U", mktime(0, 0, 0, $dob[0], $dob[1], $dob[2]))) > date("md") ? ((date("Y") - $dob[2]) -1) : (date("Y") - $dob[2]));*/
-
-/*$udb = $_POST['dob'];
-$dob = new DateTime($udb);
-$now = new DateTime();
-$dif = $now->diff($udb);
-$agv = $dif->y;*/
 
 $first = mysqli_real_escape_string($conn, $_POST['first']);
 $last = mysqli_real_escape_string($conn, $_POST['last']);
