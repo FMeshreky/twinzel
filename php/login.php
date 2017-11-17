@@ -41,6 +41,7 @@ if (isset($_POST['submit'])) {
           DB::query('INSERT INTO login_tokens VALUES (\'\', :token, :user_id)', array(':token'=>sha1($token), ':user_id'=>$user_id));
 
           setcookie("TID", $token, time() + 60 * 60 * 24 * 7, '/', NULL, NULL, TRUE);
+          setcookie("_TID", "1", time() + 60 * 60 * 24 * 3, '/', NULL, NULL, TRUE);
 
           header("Location: ../home.php");
           exit();
