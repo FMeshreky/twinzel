@@ -8,7 +8,7 @@
 
       if (DB::query('SELECT user_id FROM login_tokens WHERE token=:token', array(':token'=>sha1($_COOKIE['TID'])))) {
 
-        $user_id = DB::query('SELECT user_id FROM login_tokens WHERE token=:token', array(':token'=>sha1($_COOKIE['TID'])))[0][user_id];
+        $user_id = DB::query('SELECT user_id FROM login_tokens WHERE token=:token', array(':token'=>sha1($_COOKIE['TID'])))[0]['user_id'];
 
         if (isset($_COOKIE['_TID'])) {
 
@@ -36,10 +36,7 @@
 
   }
 
-  if (isLoggedIn()) {
-    header("Location: ../twinzel/home.php?index=loggedin");
-    exit();
-  } else {
+  if (!isLoggedIn()) {
     header("Location: ../twinzel/index.php?index=loggedout");
     exit();
   }
