@@ -1,5 +1,7 @@
 <?php
 
+include_once('pdo.php');
+
 class Check {
 
   public static function isLoggedIn() {

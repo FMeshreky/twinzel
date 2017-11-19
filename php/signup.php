@@ -1,7 +1,7 @@
 <?php
 
 // include_once 'config.php';
-include('pdo.php');
+include_once('pdo.php');
 
 if (isset($_POST['register'])) {
 

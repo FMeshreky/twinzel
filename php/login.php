@@ -1,7 +1,7 @@
 <?php
 
 // include_once 'config.php';
-include('pdo.php');
+include_once('pdo.php');
 
 if (isset($_POST['submit'])) {
 
@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
 
         } /*elseif (password_verify($pwd, DB::query('SELECT user_pwd FROM users WHERE :email=user_email', array(':email'=>$email))[0]['user_pwd']) && (!isset($_POST['checkbox']))) {*/
 
-          header("Location: ../home.php");
+          header("Location: ../index.php?login=error");
           exit();
 
         // } else {

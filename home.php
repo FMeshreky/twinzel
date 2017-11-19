@@ -1,7 +1,7 @@
 <?php
 
   include_once('./php/session.php');
-  include('./php/logout.php');
+  // include_once('./php/logout.php');
   include_once('./php/loginClass.php');
   // include('./php/pdo.php');
 
@@ -419,12 +419,12 @@
                   </a>
                 </li>
                 <li>
-                  <form action="logout.php" method="post">
-                    <a href="" name="confirm" value="confirm">
+                  <!-- <form method="post" action="php/logout.php"> -->
+                    <a href="php/logout.php">
                       <svg class="twinz-logout-icon"><use xlink:href="icons/icons.svg#twinz-logout-icon"></use></svg>
                       <span>Log Out</span>
                     </a>
-                  </form>
+                  <!-- </form> -->
                 </li>
               </ul>
             </div>
