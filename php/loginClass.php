@@ -1,8 +1,8 @@
 <?php
 
-  include_once('pdo.php');
+class Check {
 
-  function isLoggedIn() {
+  public static function isLoggedIn() {
 
     if(isset($_COOKIE['TID'])) {
 
@@ -24,7 +24,7 @@
           setcookie("TID", $token, time() + 60 * 60 * 24 * 7, '/', NULL, NULL, TRUE);
           setcookie("_TID", "1", time() + 60 * 60 * 24 * 3, '/', NULL, NULL, TRUE);
 
-          return true;
+          return $user_id;
 
         }
 
@@ -36,9 +36,6 @@
 
   }
 
-  if (!isLoggedIn()) {
-    header("Location: ../twinzel/index.php?index=loggedout");
-    exit();
-  }
+}
 
  ?>

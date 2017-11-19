@@ -1,6 +1,8 @@
 <?php
 
   include('./php/pdo.php');
+  // include('./php/login.php');
+  // include('./php/signup.php');
 
 ?>
 
@@ -140,11 +142,14 @@
                     <input class="form-control" placeholder="" type="password" name="pwd" required>
                   </div>
                   <div class="remember">
-                    <div class="checkbox">
+                    <!--<div class="checkbox">
                       <label>
-                        <input name="optionsCheckboxes" type="checkbox">
+                        <input name="optionsCheckboxes" type="checkbox" name="checkbox">
                         Remember Me
                       </label>
+                    </div>-->
+                    <div class="checkbox">
+
                     </div>
                     <a href="#" class="forgot">Forgot your password?</a>
                   </div>

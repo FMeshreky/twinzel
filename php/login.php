@@ -10,6 +10,7 @@ if (isset($_POST['submit'])) {
 
   $email = $_POST['email'];
   $pwd = $_POST['pwd'];
+  // $remember = $_POST['checkbox'];
 
   //Error handlers
   //Check if inputs are Empty
@@ -33,7 +34,7 @@ if (isset($_POST['submit'])) {
       //   $hashedPwdCheck = password_verify($pwd, $row['user_pwd']);
       //   if ($hashedPwdCheck == false) {
 
-          if (password_verify($pwd, DB::query('SELECT user_pwd FROM users WHERE :email=user_email', array(':email'=>$email))[0]['user_pwd'])) {
+      if (password_verify($pwd, DB::query('SELECT user_pwd FROM users WHERE :email=user_email', array(':email'=>$email))[0]['user_pwd'])) /*&& (isset($_POST['checkbox'])))*/ {
 
           $cstrong = True;
           $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
@@ -45,6 +46,12 @@ if (isset($_POST['submit'])) {
 
           header("Location: ../home.php");
           exit();
+
+        } /*elseif (password_verify($pwd, DB::query('SELECT user_pwd FROM users WHERE :email=user_email', array(':email'=>$email))[0]['user_pwd']) && (!isset($_POST['checkbox']))) {*/
+
+          header("Location: ../home.php");
+          exit();
+
         // } else {
         // // } elseif ($hashedPwdCheck == true) {
         //   //Log in the user here
@@ -63,9 +70,10 @@ if (isset($_POST['submit'])) {
         //   header("Location: ../index.php?login=error");
         //   exit();
 
-      }
     }
+
   }
+
 } else {
   header("Location: ../index.php?login=error");
   exit();
