@@ -11,13 +11,13 @@ $check = DB::query('SELECT user_id FROM title WHERE user_id=:user_id', array(':u
 if ($check > 0) {
 
   DB::query('UPDATE title SET title=:title WHERE :user_id=user_id', array(':title'=>$title, ':user_id'=>Check::isLoggedIn()));
-  header("Location: ../home.php?index=changed");
+  header("Location: ../stories.php?index=changed");
   exit();
 
 } else {
 
   DB::query('INSERT INTO title VALUES (\'\', :title, :user_id)', array(':title'=>$title, ':user_id'=>Check::isLoggedIn()));
-  header("Location: ../home.php?index=empty");
+  header("Location: ../stories.php?index=empty");
   exit();
 
 }

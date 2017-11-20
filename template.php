@@ -40,11 +40,6 @@ include_once('./php/title.php');
   	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css">
   	<link rel="stylesheet" type="text/css" href="css/mediaelement-playlist-plugin.min.css">
   	<link rel="stylesheet" type="text/css" href="css/mediaelementplayer.css">
-    <link rel="stylesheet" type="text/css" href="css/simplecalendar.css">
-    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css">
-    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
-
 
   	<!-- Lightbox popup script-->
   	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
@@ -586,205 +581,18 @@ include_once('./php/title.php');
 
 <div class="header-spacer"></div>
 
-<!-- END OF TEMPLATE HEADER -->
 
-<!-- Status/Multimedia/Blog Container -->
 
-<div class="container">
-  <div class="row">
 
-    <main class="col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-xs-12">
-      <div class="ui-block">
-        <div class="news-feed-form">
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
-                <svg class="twinz-status-icon"><use xlink:href="icons/icons.svg#twinz-status-icon"></use></svg>
-                <span>Status</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link inline-items" data-toggle="tab" href="#profile-1" role="tab" aria-expanded="false">
-                <svg class="twinz-multimedia-icon"><use xlink:href="icons/icons.svg#twinz-multimedia-icon"></use></svg>
-                <span>Multimedia</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link inline-items" data-toggle="tab" href="#blog" role="tab" aria-expanded="false">
-                <svg class="twinz-blog-icon"><use xlink:href="icons/icons.svg#twinz-blog-icon"></use></svg>
-                <span>Story</span>
-              </a>
-            </li>
-          </ul>
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-              <form>
-                <div class="author-thumb">
-                  <img src="img/author-page.jpg" alt="author">
-                </div>
-                <div class="form-group with-icon label-floating is-empty">
-                  <label class="control-label">Share what you are thinking here...</label>
-                  <textarea class="form-control" placeholder=""></textarea>
-                </div>
-                <div class="add-options-message">
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
-                    <svg class="twinz-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="icons/icons.svg#twinz-camera-icon"></use></svg>
-                  </a>
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
-                    <svg class="twinz-computer-icon"><use xlink:href="icons/icons.svg#twinz-computer-icon"></use></svg>
-                  </a>
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
-                    <svg class="twinz-small-pin-icon"><use xlink:href="icons/icons.svg#twinz-small-pin-icon"></use></svg>
-                  </a>
-                  <button class="btn btn-primary btn-md-2">Post Status</button>
-                  <!-- <button   class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button> -->
-                </div>
-              </form>
-            </div>
-            <div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
-              <form>
-                <div class="author-thumb">
-                  <img src="img/author-page.jpg" alt="author">
-                </div>
-                <div class="form-group with-icon label-floating is-empty">
-                  <label class="control-label">Share what your media here...</label>
-                  <textarea class="form-control" placeholder=""  ></textarea>
-                </div>
-                <div class="add-options-message">
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
-                    <svg class="twinz-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="icons/icons.svg#twinz-camera-icon"></use></svg>
-                  </a>
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
-                    <svg class="twinz-computer-icon"><use xlink:href="icons/icons.svg#twinz-computer-icon"></use></svg>
-                  </a>
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
-                    <svg class="twinz-small-pin-icon"><use xlink:href="icons/icons.svg#twinz-small-pin-icon"></use></svg>
-                  </a>
-                  <button class="btn btn-primary btn-md-2">Post Media</button>
-                  <!-- <button   class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button> -->
-                </div>
-              </form>
-            </div>
-            <div class="tab-pane" id="blog" role="tabpanel" aria-expanded="true">
-              <form>
-                <div class="author-thumb">
-                  <img src="img/author-page.jpg" alt="author">
-                </div>
-                <div class="form-group with-icon label-floating is-empty">
-                  <label class="control-label">Share a story here...</label>
-                  <textarea class="form-control" placeholder=""  ></textarea>
-                </div>
-                <div class="add-options-message">
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
-                    <svg class="twinz-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="icons/icons.svg#twinz-camera-icon"></use></svg>
-                  </a>
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
-                    <svg class="twinz-computer-icon"><use xlink:href="icons/icons.svg#twinz-computer-icon"></use></svg>
-                  </a>
-                  <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
-                    <svg class="twinz-small-pin-icon"><use xlink:href="icons/icons.svg#twinz-small-pin-icon"></use></svg>
-                  </a>
-                  <button class="btn btn-primary btn-md-2">Post Story</button>
-                  <!-- <button   class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button> -->
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
 
-    <!-- Left Sidebar -->
 
-    <aside class="col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-xs-12">
-      <div class="ui-block">
-        <div class="widget w-wethear">
-          <a href="#" class="more"><svg class="twinz-three-dots-icon"><use xlink:href="icons/icons.svg#twinz-three-dots-icon"></use></svg></a>
-          <div class="wethear-now inline-items">
-            <div class="temperature-sensor">64°</div>
-            <div class="max-min-temperature">
-              <span>58°</span>
-              <span>76°</span>
-            </div>
 
-            <svg class="twinz-weather-partly-sunny-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-partly-sunny-icon"></use></svg>
-          </div>
-          <div class="wethear-now-description">
-            <div class="climate">Partly Sunny</div>
-            <span>Real Feel: <span>67°</span></span>
-            <span>Chance of Rain: <span>49%</span></span>
-          </div>
-          <ul class="weekly-forecast">
-            <li>
-              <div class="day">sun</div>
-              <svg class="twinz-weather-sunny-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-sunny-icon"></use></svg>
 
-              <div class="temperature-sensor-day">60°</div>
-            </li>
-            <li>
-              <div class="day">mon</div>
-              <svg class="twinz-weather-partly-sunny-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-partly-sunny-icon"></use></svg>
-              <div class="temperature-sensor-day">58°</div>
-            </li>
-            <li>
-              <div class="day">tue</div>
-              <svg class="twinz-weather-cloudy-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-cloudy-icon"></use></svg>
 
-              <div class="temperature-sensor-day">67°</div>
-            </li>
-            <li>
-              <div class="day">wed</div>
-              <svg class="twinz-weather-rain-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-rain-icon"></use></svg>
 
-              <div class="temperature-sensor-day">70°</div>
-            </li>
-            <li>
-              <div class="day">thu</div>
-              <svg class="twinz-weather-storm-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-storm-icon"></use></svg>
-              <div class="temperature-sensor-day">58°</div>
-            </li>
-            <li>
-              <div class="day">fri</div>
-              <svg class="twinz-weather-snow-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-snow-icon"></use></svg>
 
-              <div class="temperature-sensor-day">68°</div>
-            </li>
-            <li>
-              <div class="day">sat</div>
-              <svg class="twinz-weather-wind-icon-header"><use xlink:href="icons/icons-weather.svg#twinz-weather-wind-icon-header"></use></svg>
-              <div class="temperature-sensor-day">65°</div>
-            </li>
-          </ul>
-          <div class="date-and-place">
-            <h5 class="date">Saturday, March 26th</h5>
-            <div class="place">San Francisco, CA</div>
-          </div>
-        </div>
-      </div>
-    </aside>
 
-<!-- ... end Left Sidebar -->
 
-<!-- Right Sidebar -->
-
-<div class="col-xl-3 order-xl-3 col-lg-6 lrder-lg-3 col-md-6 col-sm-12 col-xs-12">
-  <div class="ui-block">
-    <div class="widget w-action">
-      <img src="img/logoO.png" alt="Twinzel">
-      <div class="content">
-        <h4 class="title">TWiNZEL</h4>
-        <span>THE BEST SOCIAL NETWORK FOR TRAVELLERS!</span>
-        <a href="index.php" class="btn btn-bg-secondary btn-md">Learn More</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ... end Right Sidebar -->
-
-<!-- BEGINNING OF TEMPLATE FOOTER -->
 
   <!-- Back to top button -->
   <a class="back-to-top" href="#">
@@ -808,15 +616,6 @@ include_once('./php/title.php');
 
   <!-- Lightbox popup script -->
   <script src="js/jquery.magnific-popup.min.js"></script>
-
-  <!-- Datepicker input field script-->
-  <script src="js/moment.min.js"></script>
-  <script src="js/daterangepicker.min.js"></script>
-
-  <!-- Widget with events script-->
-  <script src="js/simplecalendar.js"></script>
-  <!-- Swiper / Sliders -->
-  <script src="js/swiper.jquery.min.js"></script>
 
   <script src="js/mediaelement-and-player.min.js"></script>
   <script src="js/mediaelement-playlist-plugin.min.js"></script>

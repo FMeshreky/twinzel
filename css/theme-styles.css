@@ -11,7 +11,7 @@
   right: 0;
   z-index: 21; }
   .header .page-title {
-    padding: 26px 50px 26px 100px;
+    padding: 26px 100px 26px 100px;
     text-transform: uppercase;
     float: left;
     height: 100%;
@@ -109,7 +109,7 @@
     position: unset; }
   .control-block .author-title {
     font-weight: 700;
-    font-size: 12px;
+    font-size: 15px;
     color: #fff; }
     .control-block .author-title > svg {
       margin-left: 15px;
@@ -120,12 +120,12 @@
     display: block;
     font-weight: 700;
     color: #9a9fbf;
-    font-size: 8px; }
+    font-size: 12px; }
 
 .link-find-friend {
   padding: 25px 20px;
   color: #fff;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
   display: inline-block; }
 

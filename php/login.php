@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
           setcookie("TID", $token, time() + 60 * 60 * 24 * 7, '/', NULL, NULL, TRUE);
           setcookie("_TID", "1", time() + 60 * 60 * 24 * 3, '/', NULL, NULL, TRUE);
 
-          header("Location: ../home.php");
+          header("Location: ../stories.php");
           exit();
 
         } /*elseif (password_verify($pwd, DB::query('SELECT user_pwd FROM users WHERE :email=user_email', array(':email'=>$email))[0]['user_pwd']) && (!isset($_POST['checkbox']))) {*/

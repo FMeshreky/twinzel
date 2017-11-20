@@ -1,9 +1,8 @@
 <?php
 
   include_once('./php/session.php');
-  // include_once('./php/logout.php');
+  // include('./php/logout.php');
   include_once('./php/loginClass.php');
-  include_once('./php/title.php');
   // include('./php/pdo.php');
 
  ?>
@@ -17,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Twinzel</title>
+    <title>Stories | Twinzel</title>
 
     <!-- Main Font -->
     <script src="js/webfontloader.min.js"></script>
@@ -339,13 +338,14 @@
           <span class="icon-status-online"></span>
           <div class="more-dropdown more-with-triangle">
             <div class="mCustomScrollbar" data-mcs-theme="dark">
+
               <div class="ui-block-title ui-block-title-small">
                 <h6 class="title">Custom Status</h6>
               </div>
-              <form class="form-group with-button custom-status" method="post" action="php/title.php">
-                <input class="form-control" placeholder="New Twinzler" type="text" name="customTitle">
+              <form class="form-group with-button custom-status">
+                <input class="form-control" placeholder="" type="text" value="WORLD TRAVELLER">
 
-                <button class="bg-primary" name="title" type="submit">
+                <button class="bg-primary">
                   <svg class="twinz-check-icon"><use xlink:href="icons/icons.svg#twinz-check-icon"></use></svg>
                 </button>
               </form>
@@ -419,31 +419,19 @@
                   </a>
                 </li>
                 <li>
-                  <!-- <form method="post" action="php/logout.php"> -->
-                    <a href="php/logout.php">
-                      <svg class="twinz-logout-icon"><use xlink:href="icons/icons.svg#twinz-logout-icon"></use></svg>
-                      <span>Log Out</span>
-                    </a>
-                  <!-- </form> -->
+                  <a href="php/logout.php">
+                    <svg class="twinz-logout-icon"><use xlink:href="icons/icons.svg#twinz-logout-icon"></use></svg>
+                    <span>Log Out</span>
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <a href="home.php" class="author-name fn">
-          <div class="author-title" name="user-name">
-            <?php
-              $user_first = DB::query('SELECT user_first FROM users WHERE user_id=:user_id', array(':user_id'=>isLoggedIn()))[0]['user_first'];
-              echo $user_first;
-             ?>
-            <svg class="twinz-dropdown-arrow-icon"><use xlink:href="icons/icons.svg#twinz-dropdown-arrow-icon"></use></svg>
+          <div class="author-title" name="user-name"> $User Name <svg class="twinz-dropdown-arrow-icon"><use xlink:href="icons/icons.svg#twinz-dropdown-arrow-icon"></use></svg>
           </div>
-          <span class="author-subtitle" name="user-title">
-            <?php
-              $user_title = DB::query('SELECT title FROM title WHERE user_id=:user_id', array(':user_id'=>isLoggedIn()))[0]['title'];
-              echo $user_title;
-             ?>
-          </span>
+          <span class="author-subtitle" name="user-title">$Status</span>
         </a>
       </div>
 
@@ -704,6 +692,91 @@
 
         <!-- ... end Like Button Right -->
 
+        <!-- Left Sidebar -->
+
+        <!-- <aside class="col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-xs-12"> -->
+          <div class="ui-block">
+            <div class="widget w-wethear">
+              <a href="#" class="more"><svg class="twinz-three-dots-icon"><use xlink:href="icons/icons.svg#twinz-three-dots-icon"></use></svg></a>
+
+              <div class="wethear-now inline-items">
+                <div class="temperature-sensor">64°</div>
+                <div class="max-min-temperature">
+                  <span>58°</span>
+                  <span>76°</span>
+                </div>
+
+                <svg class="twinz-weather-partly-sunny-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-partly-sunny-icon"></use></svg>
+              </div>
+
+              <div class="wethear-now-description">
+                <div class="climate">Partly Sunny</div>
+                <span>Real Feel: <span>67°</span></span>
+                <span>Chance of Rain: <span>49%</span></span>
+              </div>
+
+              <ul class="weekly-forecast">
+
+                <li>
+                  <div class="day">sun</div>
+                  <svg class="twinz-weather-sunny-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-sunny-icon"></use></svg>
+
+                  <div class="temperature-sensor-day">60°</div>
+                </li>
+
+                <li>
+                  <div class="day">mon</div>
+                  <svg class="twinz-weather-partly-sunny-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-partly-sunny-icon"></use></svg>
+                  <div class="temperature-sensor-day">58°</div>
+                </li>
+
+                <li>
+                  <div class="day">tue</div>
+                  <svg class="twinz-weather-cloudy-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-cloudy-icon"></use></svg>
+
+                  <div class="temperature-sensor-day">67°</div>
+                </li>
+
+                <li>
+                  <div class="day">wed</div>
+                  <svg class="twinz-weather-rain-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-rain-icon"></use></svg>
+
+                  <div class="temperature-sensor-day">70°</div>
+                </li>
+
+                <li>
+                  <div class="day">thu</div>
+                  <svg class="twinz-weather-storm-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-storm-icon"></use></svg>
+
+                  <div class="temperature-sensor-day">58°</div>
+                </li>
+
+                <li>
+                  <div class="day">fri</div>
+                  <svg class="twinz-weather-snow-icon"><use xlink:href="icons/icons-weather.svg#twinz-weather-snow-icon"></use></svg>
+
+                  <div class="temperature-sensor-day">68°</div>
+                </li>
+
+                <li>
+                  <div class="day">sat</div>
+
+                  <svg class="twinz-weather-wind-icon-header"><use xlink:href="icons/icons-weather.svg#twinz-weather-wind-icon-header"></use></svg>
+
+                  <div class="temperature-sensor-day">65°</div>
+                </li>
+
+              </ul>
+
+              <div class="date-and-place">
+                <h5 class="date">Saturday, March 26th</h5>
+                <div class="place">San Francisco, CA</div>
+              </div>
+
+            </div>
+          </div>
+
+
       </div>
       <!--<a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="twinz-three-dots-icon"><use xlink:href="icons/icons.svg#twinz-three-dots-icon"></use></svg></a>-->
     </div>
@@ -711,346 +784,9 @@
     <!-- ... end Main Content -->
 
 
-    <!-- Left Sidebar -->
-
-    <div class="col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-xs-12">
-      <div class="ui-block">
-        <div class="ui-block-title">
-          <h6 class="title">Profile Intro</h6>
-        </div>
-        <div class="ui-block-content">
-					<ul class="widget w-personal-info item-block">
-						<li>
-							<span class="title">About Me:</span>
-							<span class="text">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56.</span>
-						</li>
-						<li>
-							<span class="title">Favourite TV Shows:</span>
-							<span class="text">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</span>
-						</li>
-						<li>
-							<span class="title">Favourite Music Bands / Artists:</span>
-							<span class="text">Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.</span>
-						</li>
-					</ul>
-
-					<div class="widget w-socials">
-						<h6 class="title">Other Social Networks:</h6>
-						<a href="#" class="social-item bg-facebook">
-							<i class="fa fa-facebook" aria-hidden="true"></i>
-							Facebook
-						</a>
-						<a href="#" class="social-item bg-twitter">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-							Twitter
-						</a>
-						<a href="#" class="social-item bg-dribbble">
-							<i class="fa fa-dribbble" aria-hidden="true"></i>
-							Dribbble
-						</a>
-					</div>
-				</div>
-      </div>
-    </div>
-
-    <!-- ... end Left Sidebar -->
+    </aside>
 
 
-    <!-- Right Sidebar -->
-
-    <div class="col-xl-3 order-xl-3 col-lg-6 lrder-lg-3 col-md-6 col-sm-12 col-xs-12">
-      <div class="ui-block">
-        <div class="widget w-action">
-
-          <img src="img/logoO.png" alt="Twinzel">
-          <div class="content">
-            <h4 class="title">TWiNZEL</h4>
-            <span>THE BEST SOCIAL NETWORK FOR TRAVELLERS!</span>
-            <a href="index.php" class="btn btn-bg-secondary btn-md">Learn More</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="ui-block">
-				<div class="ui-block-title">
-					<h6 class="title">Friends (86)</h6>
-				</div>
-				<div class="ui-block-content">
-					<ul class="widget w-faved-page js-zoom-gallery">
-						<li>
-							<a href="#">
-								<img src="img/avatar38-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar24-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar36-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar35-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar34-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar33-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar32-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar31-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar30-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar29-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar28-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar27-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar26-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="img/avatar25-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li class="all-users">
-							<a href="#">+74</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-      <div class="ui-block">
-        <div class="ui-block-title">
-          <h6 class="title">James’s Badges</h6>
-        </div>
-        <div class="ui-block-content">
-
-          <ul class="widget w-badges">
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge1.png" alt="author">
-                <div class="label-avatar bg-primary">2</div>
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge4.png" alt="author">
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge3.png" alt="author">
-                <div class="label-avatar bg-blue">4</div>
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge6.png" alt="author">
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge11.png" alt="author">
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge8.png" alt="author">
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge10.png" alt="author">
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge13.png" alt="author">
-                <div class="label-avatar bg-breez">2</div>
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge7.png" alt="author">
-              </a>
-            </li>
-            <li>
-              <a href="24-CommunityBadges.html">
-                <img src="img/badge12.png" alt="author">
-              </a>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- ... end Right Sidebar -->
-
-
-    <!-- Window-popup Update Header Photo -->
-
-    <div class="modal fade" id="update-header-photo">
-      <div class="modal-dialog ui-block window-popup update-header-photo">
-        <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-          <svg class="twinz-close-icon"><use xlink:href="icons/icons.svg#twinz-close-icon"></use></svg>
-        </a>
-        <div class="ui-block-title">
-          <h6 class="title">Update Cover Picture</h6>
-        </div>
-        <a href="#" class="upload-photo-item">
-          <svg class="twinz-computer-icon"><use xlink:href="icons/icons.svg#twinz-computer-icon"></use></svg>
-          <h6>Upload Picture</h6>
-          <span>From Your Device</span>
-        </a>
-        <a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
-          <svg class="twinz-photos-icon"><use xlink:href="icons/icons.svg#twinz-photos-icon"></use></svg>
-          <h6>My Photos</h6>
-          <span>Choose From Photos</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- ... end Window-popup Update Header Photo -->
-
-    <!-- Window-popup Update Profile Photo -->
-
-    <div class="modal fade" id="update-profile-photo">
-      <div class="modal-dialog ui-block window-popup update-profile-photo">
-        <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-          <svg class="twinz-close-icon"><use xlink:href="icons/icons.svg#twinz-close-icon"></use></svg>
-        </a>
-        <div class="ui-block-title">
-          <h6 class="title">Update Profile Picture</h6>
-        </div>
-        <a href="#" class="upload-photo-item">
-          <svg class="twinz-computer-icon"><use xlink:href="icons/icons.svg#twinz-computer-icon"></use></svg>
-          <h6>Upload Picture</h6>
-          <span>From Your Device</span>
-        </a>
-        <a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
-          <svg class="twinz-photos-icon"><use xlink:href="icons/icons.svg#twinz-photos-icon"></use></svg>
-          <h6>My Photos</h6>
-          <span>Choose From Photos</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- ... end Window-popup Update Profile Photo -->
-
-    <!-- Window-popup Choose from my Photo -->
-
-    <div class="modal fade" id="choose-from-my-photo">
-      <div class="modal-dialog ui-block window-popup choose-from-my-photo">
-        <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-          <svg class="twinz-close-icon"><use xlink:href="icons/icons.svg#twinz-close-icon"></use></svg>
-        </a>
-        <div class="ui-block-title">
-          <h6 class="title">Choose From Photos</h6>
-
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-expanded="true">
-                <svg class="twinz-photos-icon"><use xlink:href="icons/icons.svg#twinz-photos-icon"></use></svg>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-expanded="false">
-                <svg class="twinz-albums-icon"><use xlink:href="icons/icons.svg#twinz-albums-icon"></use></svg>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="ui-block-content">
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
-              <div class="choose-photo-item" data-mh="choose-item">
-                <div class="radio">
-                  <label class="custom-radio">
-                    <img src="img/choose-photo1.jpg" alt="photo">
-                    <input type="radio" name="optionsRadios">
-                  </label>
-                </div>
-              </div>
-
-              <!-- Space Holder -->
-
-              <div class="tab-pane" data-mh="choose-item">
-
-              </div>
-
-              <!-- ... end Space Holder -->
-
-              <a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
-              <a href="#" class="btn btn-primary btn-lg btn--half-width">Save Picture</a>
-
-            </div>
-            <div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
-              <div class="choose-photo-item" data-mh="choose-item">
-                <figure>
-                  <img src="img/choose-photo10.jpg" alt="photo">
-                  <figcaption>
-                    <a href="#">Eastern Australia Vacations</a>
-                    <span>Last Added: 2 hours ago</span>
-                  </figcaption>
-                </figure>
-              </div>
-
-              <!-- Space Holder -->
-
-              <div class="tab-pane" data-mh="choose-item">
-
-              </div>
-
-              <!-- ... end Space Holder -->
-
-              <a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
-      				<a href="#" class="btn btn-primary btn-lg disabled btn--half-width">Save Picture</a>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ... end Window-popup Choose from my Photo -->
 
     <!-- ... end Top Header -->
 
