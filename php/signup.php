@@ -78,6 +78,7 @@ if (empty($first) || empty($last) || empty($email) || empty($pwd)) {
                 // $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd, user_age, user_gen) VALUES ('$first', '$last', '$email', '$hashedPwd', '$age', '$gen');";
                 // mysqli_query($conn, $sql);
                 DB::query('INSERT INTO users VALUES (\'\', :first, :last, :email, :pwd, :age, :gen)', array(':first'=>$first, ':last'=>$last, ':email'=>$email, ':pwd'=>password_hash($pwd, PASSWORD_BCRYPT), ':age'=>$age, ':gen'=>$gen));
+                DB::query('INSERT INTO title VALUES (\'\', :title, :user_id)', array(':title'=>"New Twinzeler", ':user_id'=>Check::isLoggedIn()));
                 header("Location: ../index.php?index=success");
                 exit();
               }

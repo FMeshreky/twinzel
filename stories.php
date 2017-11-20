@@ -1,7 +1,7 @@
 <?php
 
   include_once('./php/session.php');
-  include('./php/logout.php');
+  // include('./php/logout.php');
   include_once('./php/loginClass.php');
   // include('./php/pdo.php');
 
@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Twinzel</title>
+    <title>Stories | Twinzel</title>
 
     <!-- Main Font -->
     <script src="js/webfontloader.min.js"></script>
@@ -419,12 +419,10 @@
                   </a>
                 </li>
                 <li>
-                  <form action="logout.php" method="post">
-                    <a href="" name="confirm" value="confirm">
-                      <svg class="twinz-logout-icon"><use xlink:href="icons/icons.svg#twinz-logout-icon"></use></svg>
-                      <span>Log Out</span>
-                    </a>
-                  </form>
+                  <a href="php/logout.php">
+                    <svg class="twinz-logout-icon"><use xlink:href="icons/icons.svg#twinz-logout-icon"></use></svg>
+                    <span>Log Out</span>
+                  </a>
                 </li>
               </ul>
             </div>

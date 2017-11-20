@@ -3,6 +3,7 @@
   include_once('./php/session.php');
   // include_once('./php/logout.php');
   include_once('./php/loginClass.php');
+  include_once('./php/title.php');
   // include('./php/pdo.php');
 
  ?>
@@ -342,10 +343,10 @@
               <div class="ui-block-title ui-block-title-small">
                 <h6 class="title">Custom Status</h6>
               </div>
-              <form class="form-group with-button custom-status">
-                <input class="form-control" placeholder="" type="text" value="WORLD TRAVELLER">
+              <form class="form-group with-button custom-status" method="post" action="php/title.php">
+                <input class="form-control" placeholder="New Twinzler" type="text" name="customTitle">
 
-                <button class="bg-primary">
+                <button class="bg-primary" name="title" type="submit">
                   <svg class="twinz-check-icon"><use xlink:href="icons/icons.svg#twinz-check-icon"></use></svg>
                 </button>
               </form>
@@ -431,9 +432,19 @@
           </div>
         </div>
         <a href="home.php" class="author-name fn">
-          <div class="author-title" name="user-name"> $User Name <svg class="twinz-dropdown-arrow-icon"><use xlink:href="icons/icons.svg#twinz-dropdown-arrow-icon"></use></svg>
+          <div class="author-title" name="user-name">
+            <?php
+              $user_first = DB::query('SELECT user_first FROM users WHERE user_id=:user_id', array(':user_id'=>isLoggedIn()))[0]['user_first'];
+              echo $user_first;
+             ?>
+            <svg class="twinz-dropdown-arrow-icon"><use xlink:href="icons/icons.svg#twinz-dropdown-arrow-icon"></use></svg>
           </div>
-          <span class="author-subtitle" name="user-title">$Status</span>
+          <span class="author-subtitle" name="user-title">
+            <?php
+              $user_title = DB::query('SELECT title FROM title WHERE user_id=:user_id', array(':user_id'=>isLoggedIn()))[0]['title'];
+              echo $user_title;
+             ?>
+          </span>
         </a>
       </div>
 

@@ -10,6 +10,8 @@
 
         $user_id = DB::query('SELECT user_id FROM login_tokens WHERE token=:token', array(':token'=>sha1($_COOKIE['TID'])))[0]['user_id'];
 
+        return $user_id;
+
         if (isset($_COOKIE['_TID'])) {
 
         return true;
