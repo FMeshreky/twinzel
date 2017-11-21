@@ -2,7 +2,7 @@
 
 include_once('./php/session.php');
 include_once('./php/loginClass.php');
-include_once('./php/title.php');
+// include_once('./php/title.php');
 
  ?>
 
@@ -68,7 +68,7 @@ include_once('./php/title.php');
             </a>
           </li>
           <li>
-            <a href="home.php">
+            <a href="stories.php">
               <svg class="twinz-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="icons/icons.svg#twinz-newsfeed-icon"></use></svg>
             </a>
           </li>
@@ -101,14 +101,14 @@ include_once('./php/title.php');
       </div>
     </div>
     <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
-      <a href="home.php" class="logo">
+      <a href="stories.php" class="logo">
         <img src="img/logo-landing.png" alt="Twinzel">
       </a>
 
       <div class="mCustomScrollbar" data-mcs-theme="dark">
         <ul class="left-menu">
           <li>
-            <a href="home.php">
+            <a href="stories.php">
               <svg class="twinz-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="icons/icons.svg#twinz-newsfeed-icon"></use></svg>
               <span class="left-menu-title">Stories</span>
             </a>
@@ -193,7 +193,7 @@ include_once('./php/title.php');
             </div>
             <span class="author-subtitle">
               <?php
-                $user_title = DB::query('SELECT title FROM title WHERE user_id=:user_id', array(':user_id'=>isLoggedIn()))[0]['title'];
+                $user_title = DB::query('SELECT user_title FROM users WHERE user_id=:user_id', array(':user_id'=>isLoggedIn()))[0]['user_title'];
                 echo $user_title;
                ?>
             </span>
@@ -422,7 +422,7 @@ include_once('./php/title.php');
           </div>
           <span class="author-subtitle" name="user-title">
             <?php
-              $user_title = DB::query('SELECT title FROM title WHERE user_id=:user_id', array(':user_id'=>isLoggedIn()))[0]['title'];
+              $user_title = DB::query('SELECT user_title FROM users WHERE user_id=:user_id', array(':user_id'=>isLoggedIn()))[0]['user_title'];
               echo $user_title;
              ?>
           </span>

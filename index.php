@@ -212,7 +212,7 @@
                     </div>
                   </div>
 
-                  <button href="#" name="register" class="btn btn-purple btn-lg full-width" type="submit" onclick="_setAge">Register</button>
+                  <button href="#" name="register" class="btn btn-purple btn-lg full-width" type="submit">Register</button>
                 </div>
               </div>
             </form>

@@ -2,6 +2,7 @@
 
 // include_once 'config.php';
 include_once('pdo.php');
+// include_once('loginClass.php');
 
 if (isset($_POST['register'])) {
 
@@ -77,9 +78,18 @@ if (empty($first) || empty($last) || empty($email) || empty($pwd)) {
                 //Insert thee user into the database
                 // $sql = "INSERT INTO users (user_first, user_last, user_email, user_pwd, user_age, user_gen) VALUES ('$first', '$last', '$email', '$hashedPwd', '$age', '$gen');";
                 // mysqli_query($conn, $sql);
-                DB::query('INSERT INTO users VALUES (\'\', :first, :last, :email, :pwd, :age, :gen)', array(':first'=>$first, ':last'=>$last, ':email'=>$email, ':pwd'=>password_hash($pwd, PASSWORD_BCRYPT), ':age'=>$age, ':gen'=>$gen));
-                DB::query('INSERT INTO title VALUES (\'\', :title, :user_id)', array(':title'=>"New Twinzeler", ':user_id'=>Check::isLoggedIn()));
-                header("Location: ../index.php?index=success");
+                DB::query('INSERT INTO users VALUES (\'\', :first, :last, :email, :pwd, :age, :gen, :title)', array(':first'=>$first, ':last'=>$last, ':email'=>$email, ':pwd'=>password_hash($pwd, PASSWORD_BCRYPT), ':age'=>$age, ':gen'=>$gen, ':title'=>"New Twinzeler"));
+                // DB::query('INSERT INTO title VALUES (\'\', :title, :user_id)', array(':title'=>"New Twinzeler", ':user_id'=>Check::isLoggedIn()));
+
+                $cstrong = True;
+                $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
+                $user_id = DB::query('SELECT user_id FROM users WHERE :email=user_email', array(':email'=>$email))[0]['user_id'];
+                DB::query('INSERT INTO login_tokens VALUES (\'\', :token, :user_id)', array(':token'=>sha1($token), ':user_id'=>$user_id));
+
+                setcookie("TID", $token, time() + 60 * 60 * 24 * 7, '/', NULL, NULL, TRUE);
+                setcookie("_TID", "1", time() + 60 * 60 * 24 * 3, '/', NULL, NULL, TRUE);
+
+                header("Location: ../stories.php");
                 exit();
               }
             }

@@ -65,7 +65,7 @@
             </a>
           </li>
           <li>
-            <a href="home.php">
+            <a href="stories.php">
               <svg class="twinz-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="icons/icons.svg#twinz-newsfeed-icon"></use></svg>
             </a>
           </li>
@@ -98,13 +98,13 @@
       </div>
     </div>
     <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
-      <a href="home.php" class="logo">
+      <a href="stories.php" class="logo">
         <img src="img/logo-landing.png" alt="Twinzel">
       </a>
 
       <div class="mCustomScrollbar" data-mcs-theme="dark">
         <ul class="left-menu">
-          <a href="home.php">
+          <a href="stories.php">
             <svg class="twinz-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="icons/icons.svg#twinz-newsfeed-icon"></use></svg>
             <span class="left-menu-title">Stories</span>
           </a>
@@ -175,7 +175,7 @@
       <div class="control-block">
         <div class="author-page author vcard inline-items">
           <div class="author-thumb">
-            <a href="home.php">
+            <a href="profile.php">
               <img src="img/author-page.jpg" alt="author" class="avatar">
               <span class="icon-status online"></span>
             </a>
@@ -428,7 +428,7 @@
             </div>
           </div>
         </div>
-        <a href="home.php" class="author-name fn">
+        <a href="profile.php" class="author-name fn">
           <div class="author-title" name="user-name"> $User Name <svg class="twinz-dropdown-arrow-icon"><use xlink:href="icons/icons.svg#twinz-dropdown-arrow-icon"></use></svg>
           </div>
           <span class="author-subtitle" name="user-title">$Status</span>

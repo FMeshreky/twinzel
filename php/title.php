@@ -6,21 +6,22 @@ include_once('loginClass.php');
 if (isset($_POST['title'])) {
 
 $title = $_POST['customTitle'];
-$check = DB::query('SELECT user_id FROM title WHERE user_id=:user_id', array(':user_id'=>Check::isLoggedIn()))[0]['user_id'];
+$check = DB::query('SELECT user_id FROM users WHERE user_id=:user_id', array(':user_id'=>Check::isLoggedIn()))[0]['user_id'];
 
 if ($check > 0) {
 
-  DB::query('UPDATE title SET title=:title WHERE :user_id=user_id', array(':title'=>$title, ':user_id'=>Check::isLoggedIn()));
+  DB::query('UPDATE users SET user_title=:user_title WHERE :user_id=user_id', array(':user_title'=>$title, ':user_id'=>Check::isLoggedIn()));
   header("Location: ../stories.php?index=changed");
   exit();
 
-} else {
-
-  DB::query('INSERT INTO title VALUES (\'\', :title, :user_id)', array(':title'=>$title, ':user_id'=>Check::isLoggedIn()));
-  header("Location: ../stories.php?index=empty");
-  exit();
-
 }
+// } else {
+//
+//   DB::query('INSERT INTO users VALUES (\'\', \'\', \'\', \'\', \'\' :user_id)', array(':title'=>$title, ':user_id'=>Check::isLoggedIn()));
+//   header("Location: ../stories.php?index=empty");
+//   exit();
+//
+// }
 
 
 }

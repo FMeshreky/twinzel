@@ -1,7 +1,7 @@
 <?php
 
 include_once('pdo.php');
-include('loginClass.php');
+include_once('loginClass.php');
 
 // function logout() {
 //

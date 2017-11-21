@@ -14,7 +14,7 @@ class Check {
 
         if (isset($_COOKIE['_TID'])) {
 
-        return true;
+        return $user_id;
 
         } else {
 

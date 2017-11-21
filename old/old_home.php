@@ -105,7 +105,7 @@
 
       <div class="mCustomScrollbar" data-mcs-theme="dark">
         <ul class="left-menu">
-          <a href="home.php">
+          <a href="stories.php">
             <svg class="twinz-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="icons/icons.svg#twinz-newsfeed-icon"></use></svg>
             <span class="left-menu-title">Stories</span>
           </a>
