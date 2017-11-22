@@ -2,6 +2,7 @@
 
 include_once('./php/session.php');
 include_once('./php/loginClass.php');
+include_once('./php/post.php');
 // include_once('./php/title.php');
 
  ?>
@@ -620,13 +621,13 @@ include_once('./php/loginClass.php');
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-              <form>
+              <form method="post">
                 <div class="author-thumb">
                   <img src="img/author-page.jpg" alt="author">
                 </div>
                 <div class="form-group with-icon label-floating is-empty">
                   <label class="control-label">Share what you are thinking here...</label>
-                  <textarea class="form-control" placeholder=""></textarea>
+                  <textarea class="form-control" placeholder="" name="status_body" maxlength="445"></textarea>
                 </div>
                 <div class="add-options-message">
                   <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
@@ -638,19 +639,19 @@ include_once('./php/loginClass.php');
                   <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
                     <svg class="twinz-small-pin-icon"><use xlink:href="icons/icons.svg#twinz-small-pin-icon"></use></svg>
                   </a>
-                  <button class="btn btn-primary btn-md-2">Post Status</button>
+                  <button class="btn btn-primary btn-md-2" type="submit" name="status_post">Post Status</button>
                   <!-- <button   class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button> -->
                 </div>
               </form>
             </div>
             <div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
-              <form>
+              <form method="post" action="php/post.php">
                 <div class="author-thumb">
                   <img src="img/author-page.jpg" alt="author">
                 </div>
                 <div class="form-group with-icon label-floating is-empty">
                   <label class="control-label">Share what your media here...</label>
-                  <textarea class="form-control" placeholder=""  ></textarea>
+                  <textarea class="form-control" placeholder="" name="media_body" maxlength="445"></textarea>
                 </div>
                 <div class="add-options-message">
                   <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
@@ -668,13 +669,13 @@ include_once('./php/loginClass.php');
               </form>
             </div>
             <div class="tab-pane" id="blog" role="tabpanel" aria-expanded="true">
-              <form>
+              <form method="post" action="php/post.php">
                 <div class="author-thumb">
                   <img src="img/author-page.jpg" alt="author">
                 </div>
                 <div class="form-group with-icon label-floating is-empty">
                   <label class="control-label">Share a story here...</label>
-                  <textarea class="form-control" placeholder=""  ></textarea>
+                  <textarea class="form-control" placeholder="" name="story_body" maxlength="63206"></textarea>
                 </div>
                 <div class="add-options-message">
                   <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
@@ -694,6 +695,125 @@ include_once('./php/loginClass.php');
           </div>
         </div>
       </div>
+
+      <?php
+      $user_id = Check::isLoggedIn();
+      $dbstories = DB::query('SELECT * FROM stories WHERE user_id=:user_id ORDER BY story_time DESC', array(':user_id'=>$user_id));
+      $post_story = "";
+      foreach($dbstories as $story) {
+       ?>
+
+       <div id="newsfeed-items-grid">
+         <div class="ui-block">
+           <article class="hentry post has-post-thumbnail">
+             <div class="post__author author vcard inline-items">
+               <img src="img/author-page.jpg" alt="author">
+               <div class="author-date">
+                 <a class="h6 post__author-name fn" href="profile.php">
+                   <?php
+                     $user_first = DB::query('SELECT user_first FROM users WHERE user_id=:user_id', array(':user_id'=>$user_id))[0]['user_first'];
+                     echo $user_first;
+                    ?>
+                 </a>
+                 <div class="post__date">
+                   <time class="published">
+                     <?php
+                      $post_time = $story['story_time'];
+                      echo '<time class="timeago" datetime="' . $post_time . '"></time>';
+                     ?>
+                   </time>
+                 </div>
+               </div>
+               <div class="more"><svg class="twinz-three-dots-icon"><use xlink:href="icons/icons.svg#twinz-three-dots-icon"></use></svg>
+                 <ul class="more-dropdown">
+                   <li>
+                     <a href="#">Edit Post</a>
+                   </li>
+                   <li>
+                     <a href="#">Delete Post</a>
+                   </li>
+                 </ul>
+               </div>
+             </div>
+             <h4>
+               <?php
+                 $post_story = $story['story_body'];
+                 echo $post_story;
+               ?>
+             </h4>
+             <div class="post-additional-info inline-items">
+               <ul class="friends-harmonic">
+
+               </ul>
+               <div class="names-people-likes">
+                 <!--<a href="#">Ellen</a>, <a href="#">Mark</a> and <a href="#">12 more</a> liked this-->
+                 <?php
+                 $post_likes = $story['story_likes'];
+                 if ($post_likes == 0) {
+                   echo "Nobody powered this post! yet...";
+                 } else {
+                   echo "";
+                 }
+                 ?>
+               </div>
+               <div class="comments-shared">
+                 <a href="#" class="post-add-icon inline-items">
+                   <svg class="twinz-heart-icon"><use xlink:href="icons/icons.svg#twinz-thunder-icon"></use></svg>
+                   <span>
+                     <?php
+                      $post_likes = $story['story_likes'];
+                      echo $post_likes;
+                     ?>
+                   </span>
+                 </a>
+                 <a href="#" class="post-add-icon inline-items">
+                   <svg class="twinz-speech-balloon-icon"><use xlink:href="icons/icons.svg#twinz-speech-balloon-icon"></use></svg>
+                   <span>
+                     <?php
+                     $post_comments = $story['story_comments'];
+                     echo $post_comments;
+                     ?>
+                   </span>
+                 </a>
+                 <a href="#" class="post-add-icon inline-items">
+                   <svg class="twinz-share-icon"><use xlink:href="icons/icons.svg#twinz-share-icon"></use></svg>
+                   <span>
+                     <?php
+                     $post_shares = $story['story_shares'];
+                     echo $post_shares;
+                     ?>
+                   </span>
+                 </a>
+               </div>
+             </div>
+             <div class="control-block-button post-control-button">
+               <a href="#" class="btn btn-control">
+                 <svg class="twinz-like-post-icon"><use xlink:href="icons/icons.svg#twinz-thunder-icon"></use></svg>
+               </a>
+               <a href="#" class="btn btn-control">
+                 <svg class="twinz-comments-post-icon"><use xlink:href="icons/icons.svg#twinz-comments-post-icon"></use></svg>
+               </a>
+               <a href="#" class="btn btn-control">
+                 <svg class="twinz-share-icon"><use xlink:href="icons/icons.svg#twinz-share-icon"></use></svg>
+               </a>
+             </div>
+           </article>
+         </div>
+       </div>
+
+       <?php
+
+        }
+
+         ?>
+
+        <!-- include_once('./php/post.php');
+          if (DB::query('SELECT COUNT(*) FROM stories WHERE :user_id=user_id', array(':user_id'=>Check::isLoggedIn())) >= 1) {
+            echo $post_story;
+          } else {
+            echo "";
+          } -->
+
     </main>
 
     <!-- Left Sidebar -->
@@ -817,6 +937,9 @@ include_once('./php/loginClass.php');
   <script src="js/simplecalendar.js"></script>
   <!-- Swiper / Sliders -->
   <script src="js/swiper.jquery.min.js"></script>
+
+  <!-- Time ago jQuery -->
+  <script src="js/jquery.timeago.js"></script>
 
   <script src="js/mediaelement-and-player.min.js"></script>
   <script src="js/mediaelement-playlist-plugin.min.js"></script>

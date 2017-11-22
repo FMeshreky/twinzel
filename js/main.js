@@ -207,7 +207,12 @@ var CRUMINA = {};
 		});
 	};
 
-
+		/* -----------------------------
+     * Forms validation added Errors Messages
+     * ---------------------------*/
+		 $(document).ready(function() {
+       $('time.timeago').timeago();
+     });
 
     /* -----------------------------
      * Lightbox popups for media
