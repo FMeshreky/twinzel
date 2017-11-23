@@ -300,9 +300,9 @@ include_once('./php/post.php');
     <h6>Stories</h6>
   </div>
   <div class="header-content-wrapper">
-    <form class="search-bar w-search notification-list friends-requests" method="get">
+    <form class="search-bar w-search notification-list friends-requests" onsubmit="stripBadAss(search_bar)" method="get">
       <div class="form-group with-button">
-        <input class="form-control js-user-search" placeholder="Search Twinzel..." type="text">
+        <input class="form-control js-user-search" placeholder="Search Twinzel..." type="text" name="search_bar">
         <button>
           <svg class="twinz-magnifying-glass-icon"><use xlink:href="icons/icons.svg#twinz-magnifying-glass-icon"></use></svg>
         </button>
@@ -343,8 +343,8 @@ include_once('./php/post.php');
               <div class="ui-block-title ui-block-title-small">
                 <h6 class="title">Custom Status</h6>
               </div>
-              <form class="form-group with-button custom-status" method="post" action="php/title.php">
-                <input class="form-control" placeholder="New Twinzler" type="text" name="customTitle">
+              <form class="form-group with-button custom-status" method="post" action="php/title.php" onsubmit="stripBadAss(customTitle)">
+                <input class="form-control" placeholder="New Twinzler" type="text" name="customTitle" maxlength="25">
                 <button class="bg-primary" name="title" type="submit">
                   <svg class="twinz-check-icon"><use xlink:href="icons/icons.svg#twinz-check-icon"></use></svg>
                 </button>
@@ -573,9 +573,9 @@ include_once('./php/post.php');
 			</div>
 		</div>
 		<div class="tab-pane " id="search" role="tabpanel">
-				<form class="search-bar w-search notification-list friend-requests">
+				<form class="search-bar w-search notification-list friend-requests" onsubmit="stripBadAss(search_mobile)">
 					<div class="form-group with-button">
-						<input class="form-control js-user-search" placeholder="Search Twinzel..." type="text">
+						<input class="form-control js-user-search" placeholder="Search Twinzel..." type="text" name="search_mobile">
 					</div>
 				</form>
 		</div>
@@ -621,7 +621,7 @@ include_once('./php/post.php');
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-              <form method="post">
+              <form method="post" onsubmit="stripBadAss(status_body)">
                 <div class="author-thumb">
                   <img src="img/author-page.jpg" alt="author">
                 </div>
@@ -631,7 +631,7 @@ include_once('./php/post.php');
                 </div>
                 <div class="add-options-message">
                   <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
-                    <svg class="twinz-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="icons/icons.svg#twinz-camera-icon"></use></svg>
+                    <svg class="twinz-happy-face-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="icons/icons.svg#twinz-happy-face-icon"></use></svg>
                   </a>
                   <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
                     <svg class="twinz-computer-icon"><use xlink:href="icons/icons.svg#twinz-computer-icon"></use></svg>
@@ -645,7 +645,7 @@ include_once('./php/post.php');
               </form>
             </div>
             <div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
-              <form method="post" action="php/post.php">
+              <form method="post" onsubmit="stripBadAss(media_body)">
                 <div class="author-thumb">
                   <img src="img/author-page.jpg" alt="author">
                 </div>
@@ -669,7 +669,7 @@ include_once('./php/post.php');
               </form>
             </div>
             <div class="tab-pane" id="blog" role="tabpanel" aria-expanded="true">
-              <form method="post" action="php/post.php">
+              <form method="post" onsubmit="stripBadAss(story_body)">
                 <div class="author-thumb">
                   <img src="img/author-page.jpg" alt="author">
                 </div>
@@ -697,10 +697,19 @@ include_once('./php/post.php');
       </div>
 
       <?php
+
       $user_id = Check::isLoggedIn();
-      $dbstories = DB::query('SELECT * FROM stories WHERE user_id=:user_id ORDER BY story_time DESC', array(':user_id'=>$user_id));
+
+      // if (isset($_GET['post_id'])) {
+      //   $post_id = DB::query('SELECT post_id FROM stories WHERE story_body=:story_body', array(':story_body'=>$story['story_body']));
+      //   DB::query('UPDATE stories SET story_likes=story_likes+1 WHERE story_id=:story_id', array(':story_id'=>$_GET['post_id']));
+      //   DB::query('INSERT INTO likes VALUES (\'\', :story_id, :user_id)', array(':story_id'=>$_GET['post_id'], ':user_id'=>$user_id));
+      // }
+
+    $dbstories = DB::query('SELECT * FROM stories /*WHERE user_id=:user_id*/ ORDER BY story_time DESC'/*, array(':user_id'=>$user_id)*/);
       $post_story = "";
       foreach($dbstories as $story) {
+
        ?>
 
        <div id="newsfeed-items-grid">
@@ -711,7 +720,8 @@ include_once('./php/post.php');
                <div class="author-date">
                  <a class="h6 post__author-name fn" href="profile.php">
                    <?php
-                     $user_first = DB::query('SELECT user_first FROM users WHERE user_id=:user_id', array(':user_id'=>$user_id))[0]['user_first'];
+                    $post_user = $story['user_id'];
+                     $user_first = DB::query('SELECT user_first FROM users WHERE user_id=:user_id', array(':user_id'=>$post_user))[0]['user_first'];
                      echo $user_first;
                     ?>
                  </a>
@@ -735,12 +745,16 @@ include_once('./php/post.php');
                  </ul>
                </div>
              </div>
-             <h4>
-               <?php
-                 $post_story = $story['story_body'];
-                 echo $post_story;
-               ?>
-             </h4>
+             <?php
+             $post_story = $story['story_body'];
+             if (strlen($post_story) <= 25) {
+               echo '<h3 style="white-space: pre-line;">' . $post_story . '</h3>';
+             } elseif (strlen($post_story) > 25 && strlen($post_story) <= 34) {
+               echo '<h4 style="white-space: pre-line;">' . $post_story . '</h4>';
+             } else {
+               echo '<p style="white-space: pre-line;">' . $post_story . '</p>';
+             }
+             ?>
              <div class="post-additional-info inline-items">
                <ul class="friends-harmonic">
 
@@ -787,13 +801,15 @@ include_once('./php/post.php');
                </div>
              </div>
              <div class="control-block-button post-control-button">
-               <a href="#" class="btn btn-control">
+               <form action="stories.php?post_id=<?php echo $story['story_id']; ?>" method="post" id="post<?php echo $story['story_id']; ?>">
+               <a href="php/like.php?post_id=<?php echo $story['story_id']; ?>" class="btn btn-control" name="do_like<?php echo $story['story_id']; ?>">
                  <svg class="twinz-like-post-icon"><use xlink:href="icons/icons.svg#twinz-thunder-icon"></use></svg>
                </a>
-               <a href="#" class="btn btn-control">
+              </form>
+               <a href="#" class="btn btn-control" id="do_comment">
                  <svg class="twinz-comments-post-icon"><use xlink:href="icons/icons.svg#twinz-comments-post-icon"></use></svg>
                </a>
-               <a href="#" class="btn btn-control">
+               <a href="#" class="btn btn-control" id="do_share">
                  <svg class="twinz-share-icon"><use xlink:href="icons/icons.svg#twinz-share-icon"></use></svg>
                </a>
              </div>
@@ -941,8 +957,20 @@ include_once('./php/post.php');
   <!-- Time ago jQuery -->
   <script src="js/jquery.timeago.js"></script>
 
+  <!-- Code Stripper -->
+  <script src="js/strip.js"></script>
+
   <script src="js/mediaelement-and-player.min.js"></script>
   <script src="js/mediaelement-playlist-plugin.min.js"></script>
+
+  <!-- Anchor acts like button -->
+  <script>
+    $("a#post_like").click(function()
+    {
+    $("#likeCommentShare").submit();
+    return false;
+    });
+  </script>
 
 </body>
 </html>
