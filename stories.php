@@ -724,7 +724,7 @@ include_once('./php/post.php');
                      $user_first = DB::query('SELECT user_first FROM users WHERE user_id=:user_id', array(':user_id'=>$post_user))[0]['user_first'];
                      echo $user_first;
                     ?>
-                 </a>
+                 </a> shared a new post
                  <div class="post__date">
                    <time class="published">
                      <?php
@@ -801,11 +801,37 @@ include_once('./php/post.php');
                </div>
              </div>
              <div class="control-block-button post-control-button">
+
+               <?php
+
+               if (!DB::query('SELECT story_id FROM likes WHERE story_id=:story_id AND user_id=:user_id', array(':story_id'=>$story['story_id'], 'user_id'=>$user_id))) {
+
+                ?>
+
                <form action="stories.php?post_id=<?php echo $story['story_id']; ?>" method="post" id="post<?php echo $story['story_id']; ?>">
                <a href="php/like.php?post_id=<?php echo $story['story_id']; ?>" class="btn btn-control" name="do_like<?php echo $story['story_id']; ?>">
-                 <svg class="twinz-like-post-icon"><use xlink:href="icons/icons.svg#twinz-thunder-icon"></use></svg>
+                 <svg class="twinz-like-post-icon"><use xlink:href="icons/icons.svg#twinz-heart-icon"></use></svg>
                </a>
               </form>
+
+              <?php
+
+              } else {
+
+               ?>
+
+               <form action="stories.php?post_id=<?php echo $story['story_id']; ?>" method="post" id="post<?php echo $story['story_id']; ?>">
+               <a href="php/like.php?post_id=<?php echo $story['story_id']; ?>" class="btn btn-control" name="do_like<?php echo $story['story_id']; ?>">
+                 <svg class="twinz-like-post-icon"><use xlink:href="icons/icons.svg#twinz-close-icon"></use></svg>
+               </a>
+              </form>
+
+              <?php
+
+              }
+
+               ?>
+
                <a href="#" class="btn btn-control" id="do_comment">
                  <svg class="twinz-comments-post-icon"><use xlink:href="icons/icons.svg#twinz-comments-post-icon"></use></svg>
                </a>

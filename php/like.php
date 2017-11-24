@@ -16,17 +16,27 @@ include_once('loginClass.php');
 
 $user_id = Check::isLoggedIn();
 
-isset($_GET['post_id']);
+if (isset($_GET['post_id'])) {
 
-DB::query('UPDATE stories SET story_likes=story_likes+1 WHERE story_id=:story_id', array(':story_id'=>$_GET['post_id']));
-DB::query('INSERT INTO likes VALUES (\'\', :story_id, :user_id)', array(':story_id'=>$_GET['post_id'], ':user_id'=>$user_id));
+if (!DB::query('SELECT user_id FROM likes WHERE story_id=:story_id AND user_id=:user_id', array('story_id'=>$_GET['post_id'], 'user_id'=>$user_id))) {
 
-header('Location: ../stories.php');
-exit();
+  DB::query('UPDATE stories SET story_likes=story_likes+1 WHERE story_id=:story_id', array(':story_id'=>$_GET['post_id']));
+  DB::query('INSERT INTO likes VALUES (\'\', :story_id, :user_id)', array(':story_id'=>$_GET['post_id'], ':user_id'=>$user_id));
 
-// }
+  header('Location: ../stories.php');
+  exit();
 
-// }
+} else {
+
+  DB::query('UPDATE stories SET story_likes=story_likes-1 WHERE story_id=:story_id', array(':story_id'=>$_GET['post_id']));
+  DB::query('DELETE FROM likes WHERE story_id=:story_id AND user_id=:user_id', array(':story_id'=>$_GET['post_id'], ':user_id'=>$user_id));
+
+  header('Location: ../stories.php');
+  exit();
+
+}
+
+}
 
 // $story_id = $story['story_id'];
 // $post_likes = $story['story_likes'];
