@@ -40,6 +40,11 @@ include_once('./php/title.php');
   	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css">
   	<link rel="stylesheet" type="text/css" href="css/mediaelement-playlist-plugin.min.css">
   	<link rel="stylesheet" type="text/css" href="css/mediaelementplayer.css">
+    <link rel="stylesheet" type="text/css" href="css/simplecalendar.css">
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+
 
   	<!-- Lightbox popup script-->
   	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
@@ -63,7 +68,7 @@ include_once('./php/title.php');
             </a>
           </li>
           <li>
-            <a href="home.php">
+            <a href="stories.php">
               <svg class="twinz-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="icons/icons.svg#twinz-newsfeed-icon"></use></svg>
             </a>
           </li>
@@ -96,14 +101,14 @@ include_once('./php/title.php');
       </div>
     </div>
     <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
-      <a href="home.php" class="logo">
+      <a href="stories.php" class="logo">
         <img src="img/logo-landing.png" alt="Twinzel">
       </a>
 
       <div class="mCustomScrollbar" data-mcs-theme="dark">
         <ul class="left-menu">
           <li>
-            <a href="home.php">
+            <a href="stories.php">
               <svg class="twinz-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="icons/icons.svg#twinz-newsfeed-icon"></use></svg>
               <span class="left-menu-title">Stories</span>
             </a>
@@ -617,8 +622,32 @@ include_once('./php/title.php');
   <!-- Lightbox popup script -->
   <script src="js/jquery.magnific-popup.min.js"></script>
 
+  <!-- Datepicker input field script-->
+  <script src="js/moment.min.js"></script>
+  <script src="js/daterangepicker.min.js"></script>
+
+  <!-- Widget with events script-->
+  <script src="js/simplecalendar.js"></script>
+  <!-- Swiper / Sliders -->
+  <script src="js/swiper.jquery.min.js"></script>
+
+  <!-- Time ago jQuery -->
+  <script src="js/jquery.timeago.js"></script>
+
+  <!-- Code Stripper -->
+  <script src="js/strip.js"></script>
+
   <script src="js/mediaelement-and-player.min.js"></script>
   <script src="js/mediaelement-playlist-plugin.min.js"></script>
+
+  <!-- Anchor acts like button -->
+  <script>
+    $("a#post_like").click(function()
+    {
+    $("#likeCommentShare").submit();
+    return false;
+    });
+  </script>
 
 </body>
 </html>
